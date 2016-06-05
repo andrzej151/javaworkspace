@@ -1,0 +1,62 @@
+package MatDyskr;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+
+public class Grafika {
+
+static	public ArrayList<Element> Wczytaj(String nazwa) {
+		ArrayList<Element> ele = new ArrayList<Element>();
+		File plik = new File(nazwa);
+		BufferedImage obrazek;
+		try {
+			obrazek = ImageIO.read(plik);
+
+			int x = obrazek.getWidth();
+			int y = obrazek.getHeight();
+
+			// -----TABLICOWANIE-----------------------------------
+			for (int i = 0; i < x; i++) {
+				for (int j = 0; j < y; j++) {
+					int o = obrazek.getRGB(i, j);
+
+					int r = (o & 0xff0000) >> 16;
+					int g = (o & 0x00ff00) >> 8;
+					int b = (o & 0x0000ff);
+					ele.add(new Element(i, j, r, g, b));
+					// System.out.println(r+" "+g+" "+b);
+					// int z=255*65536+0*256+255;
+					// obrazek.setRGB(i, j, z);
+
+				}
+			}
+			
+			return ele;
+			// System.out.println(ImageIO.write(obrazek,"jpg",plik));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ele;
+	}
+
+public static void Zapisz(String nazwa, ArrayList<Element> obrazek) {
+	 try {
+		 File plik = new File(nazwa);
+	BufferedImage obr = new BufferedImage(255, 255, 1);
+	
+	for(Element el:obrazek){
+			obr.setRGB(el.getX(), el.getY(), el.torgb());
+	}
+	
+		System.out.println(ImageIO.write(obr,"png",plik));
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
+}

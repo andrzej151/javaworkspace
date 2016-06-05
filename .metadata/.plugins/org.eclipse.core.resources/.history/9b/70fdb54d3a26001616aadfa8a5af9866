@@ -1,0 +1,45 @@
+package MatDskr;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Scanner;
+
+public class Student extends Pytanie{
+
+	public Student() {
+		super();
+		
+		
+	}
+	public boolean odpowiedz() {
+		Scanner in=new Scanner(System.in);
+		System.out.println("Imie");
+		nazwa=in.next();
+		wynagrodzenie.odpS();
+		benefity.odpS();
+		srednia_wieku.odpS();
+		umiejetnosci.odpS();
+		czaspracy.odpS();
+		priorytet();
+		return true;
+	}
+
+
+	void wyswietl()
+	{
+		System.out.println("Student "+nazwa);
+		benefity.wyswietl();
+		czaspracy.wyswietl();
+		srednia_wieku.wyswietl();
+		umiejetnosci.wyswietl();
+		wynagrodzenie.wyswietl();
+		
+	}
+	
+	
+	
+	
+}

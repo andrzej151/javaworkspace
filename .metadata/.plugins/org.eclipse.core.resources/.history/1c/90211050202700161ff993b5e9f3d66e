@@ -1,0 +1,36 @@
+package MatDyskr;
+
+import java.io.File;
+import java.util.ArrayList;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ArrayList<Element> obrazek=new ArrayList<Element>();
+		ArrayList<Element> h=new ArrayList<Element>();
+		 File file = new File("./img/"); // "./" oznacza bie¿¹cy katalog
+		 String [] dirList = {"k.png"};//file.list();
+		 for (int i=0; i<dirList.length; i++) {
+		  System.out.println(dirList[i]);
+		  obrazek=Grafika.Wczytaj("img/"+dirList[i]);
+		  for(Element d:obrazek)
+		  {
+			  System.out.println(d);
+		  }
+		 int c=0;
+		 while(c<255)
+		 {
+		  for (int j = 0; j <255; j++) {
+			h.add(new Element(j, c, j, j, c));
+		  }
+		  c++;
+		 }
+		  Grafika.Zapisz("img/m.jpg",h);
+		 }
+	}
+	
+
+	
+
+}

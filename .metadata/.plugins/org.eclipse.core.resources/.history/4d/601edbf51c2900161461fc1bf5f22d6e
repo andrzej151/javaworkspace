@@ -1,0 +1,64 @@
+package MatDyskr;
+
+public class Porownywarka {
+	private Element[][] wzor;
+	private Element[][] szukaj;
+	private double[][] wynik;
+	
+	public void wczytaj(String wzor, String szuk) {
+		// TODO Auto-generated method stub
+		this.wzor=Grafika.WczytajT("img/wzor/"+wzor);
+		this.szukaj=Grafika.WczytajT("img/szukanie/"+szuk);
+	}
+
+	public void przeszukaj() {
+		int wx=szukaj.length-wzor.length;
+		int wy=szukaj[0].length-wzor[0].length;
+		double max=0;
+		int x=0,y=0;
+		if(wx>0&&wy>0)
+		{
+			wynik=new double[wx][wy];
+			for (int i = 0; i < wx; i++) {
+				for (int j = 0; j < wy; j++) {
+					wynik[i][j]=porownaj(i,j);
+					System.out.printf("%0$6.4f ",wynik[i][j]);
+					if (max<wynik[i][j]) {
+						max=wynik[i][j];
+						x=i;
+						y=j;
+					}
+					
+				}
+				System.out.println();
+			}
+			System.out.println(max+" "+x+" "+y);
+		}
+		
+	}
+	
+	void wyswietl()
+	{
+		//for (int i = 0; i < wx; i++) {
+			//for (int j = 0; j < wy; j++) {
+	}
+
+	private double porownaj(int x, int y) {
+		double suma=0;
+		int iloraz=1;
+		for (int  i= 0; i < wzor.length; i++) {
+			for (int j = 0; j < wzor[0].length; j++) {
+				suma+=szukaj[i+x][j+y].podobienstwo(wzor[i][j]);
+				iloraz++;
+			}
+		}
+		System.out.println("v"+suma+" "+iloraz);
+		return suma/iloraz;
+	}
+
+	public void zapisz() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
